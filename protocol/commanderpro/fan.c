@@ -278,20 +278,20 @@ corsairlink_commanderpro_set_fan_curve(
     commands[3] = ctrl->table[0].temperature >> 8;
     commands[4] = ctrl->table[0].temperature & 0xff;
 
-    commands[5] = ctrl->table[0].temperature >> 8;
-    commands[6] = ctrl->table[0].temperature & 0xff;
+    commands[5] = ctrl->table[1].temperature >> 8;
+    commands[6] = ctrl->table[1].temperature & 0xff;
 
-    commands[7] = ctrl->table[0].temperature >> 8;
-    commands[8] = ctrl->table[0].temperature & 0xff;
+    commands[7] = ctrl->table[2].temperature >> 8;
+    commands[8] = ctrl->table[2].temperature & 0xff;
 
-    commands[9] = ctrl->table[0].temperature >> 8;
-    commands[10] = ctrl->table[0].temperature & 0xff;
+    commands[9] = ctrl->table[3].temperature >> 8;
+    commands[10] = ctrl->table[3].temperature & 0xff;
 
-    commands[11] = ctrl->table[0].temperature >> 8;
-    commands[12] = ctrl->table[0].temperature & 0xff;
+    commands[11] = ctrl->table[4].temperature >> 8;
+    commands[12] = ctrl->table[4].temperature & 0xff;
 
-    commands[13] = ctrl->table[0].temperature >> 8;
-    commands[14] = ctrl->table[0].temperature & 0xff;
+    commands[13] = ctrl->table[5].temperature >> 8;
+    commands[14] = ctrl->table[5].temperature & 0xff;
 
     //----------------------
 
