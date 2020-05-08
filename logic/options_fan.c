@@ -72,6 +72,8 @@ fan_suboptions_parse( char* subopts, struct fan_control* settings )
                     break;
                 sscanf( token, "%hu", &settings->table[ii].temperature );
                 msg_debug( "FAN Temperature %u: %u\n", ii, settings->table[ii].temperature );
+                //scale the temperature for the commander pro
+                settings->table[ii].temperature *= 100;
                 ++ii;
                 token = strtok( NULL, ":" );
             }

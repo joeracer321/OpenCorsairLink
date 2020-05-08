@@ -20,6 +20,8 @@
 #define _DRIVER_H
 
 #include <libusb.h>
+#include "device.h"
+#include "logic/options.h"
 
 struct corsair_lowlevel_driver
 {

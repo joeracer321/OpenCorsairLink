@@ -47,10 +47,10 @@ enum led_modes {
 
 struct temp_speed_pair {
   /** temperature */
-  unsigned int temperature;
+  uint16_t temperature;
 
   /** fan speed PWM */
-  unsigned int speed;
+  uint16_t speed;
 };
 
 enum motor_modes {
