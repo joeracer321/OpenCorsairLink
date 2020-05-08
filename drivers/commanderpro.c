@@ -68,7 +68,7 @@ struct corsair_device_driver corsairlink_driver_commanderpro = {
                     .write_profile_quiet = corsairlink_unsupported_fan,
                     .write_rpm = corsairlink_commanderpro_set_fan_speed_rpm,
                     .write_pwm = corsairlink_commanderpro_set_fan_speed_pwm,
-                    .write_custom_curve = corsairlink_unsupported_fan,
+                    .write_custom_curve = corsairlink_commanderpro_set_fan_curve,
                 },
         },
     .power =

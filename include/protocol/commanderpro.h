@@ -164,4 +164,10 @@ corsairlink_commanderpro_voltage(
     uint8_t sensor_index,
     double* voltage );
 
+int
+corsairlink_commanderpro_set_fan_curve(
+    struct corsair_device_info* dev,
+	struct libusb_device_handle* handle,
+	struct fan_control* ctrl );
+
 #endif // _PROTOCOL_COMMANDERPRO_H

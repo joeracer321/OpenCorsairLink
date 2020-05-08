@@ -267,10 +267,51 @@ corsairlink_commanderpro_set_fan_curve(
     memset( response, 0, sizeof( response ) );
     memset( commands, 0, sizeof( commands ) );
 
+    //cmd
     commands[0] = 0x25;
+    //chn
     commands[1] = (uint8_t) ctrl->channel;
-    commands[2] = 0x00; // 0x00 = CP Temp Probe 1 .... 0x03 = CP Temp Probe 4,
-                        // 0xff = External
+    //sensor
+    commands[2] = ctrl->source; // 0x00 = CP Temp Probe 1 .... 0x03 = CP Temp Probe 4, 0xff = External
+    printf("source of temp is: %02x\n",commands[2]);
+
+    commands[3] = ctrl->table[0].temperature >> 8;
+    commands[4] = ctrl->table[0].temperature & 0xff;
+
+    commands[5] = ctrl->table[0].temperature >> 8;
+    commands[6] = ctrl->table[0].temperature & 0xff;
+
+    commands[7] = ctrl->table[0].temperature >> 8;
+    commands[8] = ctrl->table[0].temperature & 0xff;
+
+    commands[9] = ctrl->table[0].temperature >> 8;
+    commands[10] = ctrl->table[0].temperature & 0xff;
+
+    commands[11] = ctrl->table[0].temperature >> 8;
+    commands[12] = ctrl->table[0].temperature & 0xff;
+
+    commands[13] = ctrl->table[0].temperature >> 8;
+    commands[14] = ctrl->table[0].temperature & 0xff;
+
+    //----------------------
+
+    commands[15] = ctrl->table[0].speed >> 8;
+    commands[16] = ctrl->table[0].speed & 0xff;
+
+    commands[17] = ctrl->table[1].speed >> 8;
+    commands[18] = ctrl->table[1].speed & 0xff;
+
+    commands[19] = ctrl->table[2].speed >> 8;
+    commands[20] = ctrl->table[2].speed & 0xff;
+
+    commands[21] = ctrl->table[3].speed >> 8;
+    commands[22] = ctrl->table[3].speed & 0xff;
+
+    commands[23] = ctrl->table[4].speed >> 8;
+    commands[24] = ctrl->table[4].speed & 0xff;
+
+    commands[25] = ctrl->table[5].speed >> 8;
+    commands[26] = ctrl->table[5].speed & 0xff;
 
     rr = dev->lowlevel->write( handle, dev->write_endpoint, commands, 64 );
     rr = dev->lowlevel->read( handle, dev->read_endpoint, response, 16 );

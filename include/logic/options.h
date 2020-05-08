@@ -47,10 +47,10 @@ enum led_modes {
 
 struct temp_speed_pair {
   /** temperature */
-  int8_t temperature;
+  unsigned int temperature;
 
   /** fan speed PWM */
-  int8_t speed;
+  unsigned int speed;
 };
 
 enum motor_modes {
@@ -89,6 +89,7 @@ struct fan_control {
   uint8_t channel;
   enum motor_modes mode;
   struct temp_speed_pair table[7];
+  uint8_t source;
 
   // data returns
   uint8_t fan_count;
@@ -184,6 +185,7 @@ enum {
   SUBOPTION_FAN_RPM,
   SUBOPTION_FAN_TEMPERATURES,
   SUBOPTION_FAN_SPEEDS,
+  SUBOPTION_FAN_TEMP_SOURCE,
   SUBOPTION_FAN_LIST_END,
 };
 
@@ -212,6 +214,7 @@ static char *fan_options[] = {[SUBOPTION_FAN_CHANNEL] = "channel",
                               [SUBOPTION_FAN_RPM] = "rpm",
                               [SUBOPTION_FAN_TEMPERATURES] = "temps",
                               [SUBOPTION_FAN_SPEEDS] = "speeds",
+							  [SUBOPTION_FAN_TEMP_SOURCE] = "source",
                               [SUBOPTION_FAN_LIST_END] = 0};
 
 static char *led_options[] = {[SUBOPTION_LED_CHANNEL] = "channel",

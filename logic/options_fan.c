@@ -70,7 +70,7 @@ fan_suboptions_parse( char* subopts, struct fan_control* settings )
             {
                 if ( ii == 7 )
                     break;
-                sscanf( token, "%hhu", &settings->table[ii].temperature );
+                sscanf( token, "%hu", &settings->table[ii].temperature );
                 msg_debug( "FAN Temperature %u: %u\n", ii, settings->table[ii].temperature );
                 ++ii;
                 token = strtok( NULL, ":" );
@@ -84,11 +84,17 @@ fan_suboptions_parse( char* subopts, struct fan_control* settings )
             {
                 if ( ii == 7 )
                     break;
-                sscanf( token, "%hhu", &settings->table[ii].speed );
+                sscanf( token, "%hu", &settings->table[ii].speed );
                 msg_debug( "FAN Speed %d: %u\n", ii, settings->table[ii].speed );
                 ++ii;
                 token = strtok( NULL, ":" );
             }
+            break;
+
+        case SUBOPTION_FAN_TEMP_SOURCE:
+        	ii = 0;
+            sscanf( value, "%hhu", &settings->source );
+            msg_debug( "FAN Temp Source = %u\n", settings->source );
             break;
 
         default:
