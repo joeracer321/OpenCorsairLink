@@ -36,30 +36,6 @@ commanderpro_settings(
     struct option_parse_return settings );
 
 int
-hydro_asetek_settings(
-    struct corsair_device_scan scanned_device,
-    struct option_flags flags,
-    struct option_parse_return settings );
-
-int
-hydro_asetekpro_settings(
-    struct corsair_device_scan scanned_device,
-    struct option_flags flags,
-    struct option_parse_return settings );
-
-int
-hydro_coolit_settings(
-    struct corsair_device_scan scanned_device,
-    struct option_flags flags,
-    struct option_parse_return settings );
-
-int
-psu_settings(
-    struct corsair_device_scan scanned_device,
-    struct option_flags flags,
-    struct option_parse_return settings );
-
-int
 main( int argc, char* argv[] )
 {
     int rr; // result from libusb functions
@@ -97,25 +73,9 @@ main( int argc, char* argv[] )
         }
         else
         {
-            if ( scanlist[device_number].device->driver == &corsairlink_driver_rmi )
-            {
-                psu_settings( scanlist[device_number], flags, settings );
-            }
-            else if ( scanlist[device_number].device->driver == &corsairlink_driver_commanderpro )
+            if ( scanlist[device_number].device->driver == &corsairlink_driver_commanderpro )
             {
                 commanderpro_settings( scanlist[device_number], flags, settings );
-            }
-            else if ( scanlist[device_number].device->driver == &corsairlink_driver_asetek )
-            {
-                hydro_asetek_settings( scanlist[device_number], flags, settings );
-            }
-            else if ( scanlist[device_number].device->driver == &corsairlink_driver_asetekpro )
-            {
-                hydro_asetekpro_settings( scanlist[device_number], flags, settings );
-            }
-            else if ( scanlist[device_number].device->driver == &corsairlink_driver_coolit )
-            {
-                hydro_coolit_settings( scanlist[device_number], flags, settings );
             }
         }
     }

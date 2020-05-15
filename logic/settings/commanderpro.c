@@ -29,6 +29,8 @@
 #include <string.h>
 #include <unistd.h>
 
+const char* temp_loc[] = { "Water", "Intake", "Case", "Exhaust" };
+
 int
 commanderpro_settings(
     struct corsair_device_scan scanned_device,
@@ -55,11 +57,11 @@ commanderpro_settings(
     /* fetch device name, vendor name, product name */
     rr = dev->driver->name( dev, handle, name, sizeof( name ) );
     rr = dev->driver->vendor( dev, handle, name, sizeof( name ) );
-    msg_info( "Vendor: %s\n", name );
+    //msg_info( "Vendor: %s\n", name );
     rr = dev->driver->product( dev, handle, name, sizeof( name ) );
-    msg_info( "Product: %s\n", name );
+    //msg_info( "Product: %s\n", name );
     rr = dev->driver->fw_version( dev, handle, name, sizeof( name ) );
-    msg_info( "Firmware: %s\n", name );
+    //msg_info( "Firmware: %s\n", name );
     msg_debug( "DEBUG: string done\n" );
 
     /* fetch temperatures */
@@ -68,7 +70,7 @@ commanderpro_settings(
         // char temperature[16];
         double temperature;
         rr = dev->driver->temperature.read( dev, handle, ii, &temperature );
-        msg_info( "Temperature %d: %5.2f C\n", ii, temperature );
+        msg_info( "%s: %5.2f C\n", temp_loc[ii], temperature );
     }
 
     /* fetch SATA voltages */
@@ -90,17 +92,24 @@ commanderpro_settings(
 
     for ( ii = 0; ii < readings.fan_ctrl.fan_count; ii++ )
     {
-        readings.fan_ctrl.channel = (uint8_t) ii;
-        rr = dev->driver->fan.profile.read_rpm( dev, handle, &readings.fan_ctrl );
-        rr = dev->driver->fan.profile.read_pwm( dev, handle, &readings.fan_ctrl );
-        rr = dev->driver->fan.profile.read_profile( dev, handle, &readings.fan_ctrl );
-        rr = dev->driver->fan.print_mode(
-                readings.fan_ctrl.mode, readings.fan_ctrl.data, readings.fan_ctrl.mode_string,
-                sizeof( readings.fan_ctrl.mode_string ) );
-        msg_info( "Fan %d:\t%s\n", ii, readings.fan_ctrl.mode_string );
-        msg_info(
-                "\tPWM: %i%%\n\tRPM: %i\n", readings.fan_ctrl.speed_pwm,
-				readings.fan_ctrl.speed_rpm );
+    	readings.fan_ctrl.channel = (uint8_t) ii;
+    	rr = dev->driver->fan.profile.read_rpm( dev, handle, &readings.fan_ctrl );
+    	rr = dev->driver->fan.profile.read_pwm( dev, handle, &readings.fan_ctrl );
+    	rr = dev->driver->fan.profile.read_profile( dev, handle, &readings.fan_ctrl );
+    	rr = dev->driver->fan.print_mode(
+    			readings.fan_ctrl.mode, readings.fan_ctrl.data, readings.fan_ctrl.mode_string,
+				sizeof( readings.fan_ctrl.mode_string ) );
+    	msg_info( "Fan %d: ", ii);
+    	if(readings.fan_ctrl.speed_pwm)
+    	{
+    		msg_info(
+    				"PWM: %i%% RPM: %i\n", readings.fan_ctrl.speed_pwm,
+					readings.fan_ctrl.speed_rpm );
+    	}
+    	else
+    	{
+    		msg_info("RPM: %i\n", readings.fan_ctrl.speed_rpm);
+    	}
     }
 
     msg_debug( "Setting LED\n" );

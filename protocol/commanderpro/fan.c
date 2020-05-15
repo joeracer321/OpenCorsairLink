@@ -83,7 +83,7 @@ corsairlink_commanderpro_fan_print_mode(
     switch ( mode )
     {
         case 0x00:
-            strncat(modestr, "Mode: Auto/Disconnected", modestr_size);
+            strncat(modestr, "Mode: Auto", modestr_size);
             break;
         case 0x01:
             strncat(modestr, "Mode: 3-Pin", modestr_size);

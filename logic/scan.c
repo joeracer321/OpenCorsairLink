@@ -18,7 +18,6 @@
 
 #include "logic/scan.h"
 
-#include "common.h"
 #include "device.h"
 #include "driver.h"
 #include "logic/print.h"
@@ -126,8 +125,8 @@ corsairlink_device_scanner( libusb_context* context, int* _scanlist_count )
                          */
                         scanlist[scanlist_count].device = device;
                         msg_info(
-                            "Dev=%d, CorsairLink Device Found: %s!\n", scanlist_count,
-                            device->name );
+                            //"Dev=%d, CorsairLink Device Found: %s!\n", scanlist_count,
+                            "%s", device->name );
                         scanlist_count++;
                         break;
                     }

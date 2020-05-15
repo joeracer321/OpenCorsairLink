@@ -49,51 +49,19 @@ MAINLOGIC_SOURCE := \
 	logic/print.c \
 	logic/scan.c \
 	logic/settings/commanderpro.c \
-	logic/settings/hydro_asetek.c \
-	logic/settings/hydro_asetekpro.c \
-	logic/settings/hydro_coolit.c \
-	logic/settings/psu.c
 
 DRIVER_SOURCE := \
-	drivers/asetek.c \
-	drivers/asetekpro.c \
 	drivers/commanderpro.c \
-	drivers/coolit_old.c \
-	drivers/coolit.c \
-	drivers/dongle.c \
-	drivers/rmi.c \
 	drivers/unsupported.c
 
 LOWLEVEL_SOURCE := \
-	lowlevel/asetek.c \
 	lowlevel/commanderpro.c \
-	lowlevel/coolit.c \
-	lowlevel/rmi.c
 
 PROTOCOL_SOURCE := \
-	protocol/asetek/core.c \
-	protocol/asetek/fan.c \
-	protocol/asetek/led.c \
-	protocol/asetek/pump.c \
-	protocol/asetek/temperature.c \
-	protocol/asetekpro/core.c \
-	protocol/asetekpro/fan.c \
-	protocol/asetekpro/led.c \
-	protocol/asetekpro/pump.c \
-	protocol/asetekpro/temperature.c \
 	protocol/commanderpro/core.c \
 	protocol/commanderpro/fan.c \
 	protocol/commanderpro/power.c \
 	protocol/commanderpro/temperature.c \
-	protocol/rmi/core.c \
-	protocol/rmi/power.c \
-	protocol/rmi/temperature.c \
-	protocol/rmi/time.c \
-	protocol/coolit/core.c \
-	protocol/coolit/fan.c \
-	protocol/coolit/led.c \
-	protocol/coolit/pump.c \
-	protocol/coolit/temperature.c
 
 HEADER := $(shell find ./include -name '*.h')
 
